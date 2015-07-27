@@ -2,3 +2,6 @@
 
 def foo():
     return True
+
+def hira2kata(text, reserved=()):
+    return False
