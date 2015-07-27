@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['hira2kata', 'kata2hira', 'half2hira', 'hira2half', 'kata2half',
-           'half2kata', 'half2wide', 'wide2half', 'convert',
-           'check_hira', 'check_kata', 'check_half']
-
 import re
 import sys
 
