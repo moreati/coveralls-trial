@@ -1,30 +1,44 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-test_coveralls_trial
-----------------------------------
-
-Tests for `coveralls_trial` module.
-"""
-
 import unittest
+from jcconv.jcconv import *
 
-from coveralls_trial import coveralls_trial
+class JcconvTest(unittest.TestCase):
+    def testKana(self):
+        # hira => kata, half
+        text1 = u'あいうえおがぎぐげごぱぴぷぺぽ'
+        self.assertEqual(hira2kata(text1), u'アイウエオガギグゲゴパピプペポ')
+        self.assertEqual(hira2half(text1), u'ｱｲｳｴｵｶﾞｷﾞｸﾞｹﾞｺﾞﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟ')
+        text2 = 'にほんごしょりはめんどくさい'
+        self.assertEqual(hira2kata(text2), 'ニホンゴショリハメンドクサイ')
+        self.assertEqual(hira2half(text2), 'ﾆﾎﾝｺﾞｼｮﾘﾊﾒﾝﾄﾞｸｻｲ')
 
+        # kata => hira, half
+        text1 = u'ナゼカサンシュルイモモジガアル'
+        self.assertEqual(kata2hira(text1), u'なぜかさんしゅるいももじがある')
+        self.assertEqual(kata2half(text1), u'ﾅｾﾞｶｻﾝｼｭﾙｲﾓﾓｼﾞｶﾞｱﾙ')
 
-class TestCoverallsTrial(unittest.TestCase):
-    def setUp(self):
-        pass
+        # half => hira, kata
+        text1 = u'ｿｺﾃﾞｿｳｺﾞﾍﾝｶﾝｷﾉｳｶﾞﾋﾂﾖｳﾆﾅﾙ'
+        self.assertEqual(half2hira(text1), u'そこでそうごへんかんきのうがひつようになる')
+        self.assertEqual(half2kata(text1), u'ソコデソウゴヘンカンキノウガヒツヨウニナル')
 
-    def test_foo(self):
-        self.assertEqual(coveralls_trial.foo(), u'ƒőő')
+    def testWideHalf(self):
+        # wide => half
+        self.assertEqual(wide2half('Ｍａｃｒｏｓｓ ７'), 'Macross 7')
 
-    def test_bar(self):
-        self.assertFalse(coveralls_trial.bar())
+        # half => wide
+        self.assertEqual(half2wide('cherry spitz 1996'), 'ｃｈｅｒｒｙ ｓｐｉｔｚ １９９６')
 
-    def test_baz(self):
-        self.assertEqual(str('Ｍａｃｒｏｓｓ ７'), 'Ｍａｃｒｏｓｓ ７')
+        # half symbole => wide symbol
+        self.assertEqual(half2wide('!%^?'), '！％＾？')
+
+        # wide symbole => half symbol
+        self.assertEqual(half2wide('^^);'), '＾＾）；')
+
+    def testReserve(self):
+        res = half2wide('abcde', [u'a', u'e'])
+        self.assertEqual(res, 'aｂｃｄe')
 
 
 if __name__ == '__main__':
