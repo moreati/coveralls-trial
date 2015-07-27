@@ -6,11 +6,11 @@ def foo():
 def bar():
     return False
 
-x = 2
-def baz():
-    if x:
-        return x**2
-    elif x == 0:
-        return x + 17
-    else:
-        return x
+#x = 2
+#def baz():
+#    if x:
+#        return x**2
+#    elif x == 0:
+#        return x + 17
+#    else:
+#        return x
