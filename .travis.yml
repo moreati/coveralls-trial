@@ -12,7 +12,9 @@ install:
   - pip install coveralls
 
 script:
+  coverage erase
   coverage run setup.py test
+  coverage report
 
 after_success:
   coveralls
