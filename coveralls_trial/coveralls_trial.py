@@ -5,7 +5,12 @@ __all__ = ['hira2kata', 'kata2hira', 'half2hira', 'hira2half', 'kata2half',
            'check_hira', 'check_kata', 'check_half']
 
 import re
-from six import text_type
+import sys
+
+if sys.version_info[:2] >= (3, 0):
+    text_type = str
+else:
+    text_type = unicode
 
 # convert hiragana to katakana
 def hira2kata(text, reserved=()):
