@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import unittest
-from jcconv.jcconv import *
+from coveralls_trial.coveralls_trial import *
 
 class JcconvTest(unittest.TestCase):
     def testKana(self):
