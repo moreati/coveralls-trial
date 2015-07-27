@@ -3,5 +3,5 @@
 def foo():
     return True
 
-def hira2kata(text, reserved=()):
+def hira2kata():
     return False
