@@ -8,37 +8,37 @@ import re
 from six import text_type
 
 # convert hiragana to katakana
-def hira2kata(text, reserved=[]):
+def hira2kata(text, reserved=()):
     return convert(text, jcconv.HIRA, jcconv.KATA, reserved)
 
 # convert katakana to hiragana
-def kata2hira(text, reserved=[]):
+def kata2hira(text, reserved=()):
     return convert(text, jcconv.KATA, jcconv.HIRA, reserved)
 
 # convert half-width kana to hiragana
-def half2hira(text, reserved=[]):
+def half2hira(text, reserved=()):
     return convert(text, jcconv.HALF, jcconv.HIRA, reserved)
 
 # convert hiragana to half-width kana
-def hira2half(text, reserved=[]):
+def hira2half(text, reserved=()):
     return convert(text, jcconv.HIRA, jcconv.HALF, reserved)
 
 # convert katakana to half-width kana
-def kata2half(text, reserved=[]):
+def kata2half(text, reserved=()):
     return convert(text, jcconv.KATA, jcconv.HALF, reserved)
 
 # convert half-width kana to katakana
-def half2kata(text, reserved=[]):
+def half2kata(text, reserved=()):
     return convert(text, jcconv.HALF, jcconv.KATA, reserved)
 
 # expand half width number and alphabet to wide width
-def half2wide(text, reserved=[]):
+def half2wide(text, reserved=()):
     text = convert(text, jcconv.HNUM, jcconv.WNUM, reserved)
     text = convert(text, jcconv.HALP, jcconv.WALP, reserved)
     return convert(text, jcconv.HSYM, jcconv.WSYM, reserved)
 
 # shrink wide width number and alphabet to half width
-def wide2half(text, reserved=[]):
+def wide2half(text, reserved=()):
     text = convert(text, jcconv.WNUM, jcconv.HNUM, reserved)
     text = convert(text, jcconv.WALP, jcconv.HALP, reserved)
     return convert(text, jcconv.WSYM, jcconv.HSYM, reserved)
@@ -59,7 +59,7 @@ def check_half(text):
 # input text must be unicode or str(utf-8)
 # 'frm' and 'to' can be specified with (HIRA, KATA, HALF, WNUM, HNUM, WALP, HALP, WSYM, HSYM)
 __regex_storage = {}
-def convert(text, frm, to, reserved=[]):
+def convert(text, frm, to, reserved=()):
     def _multiple_replace(text, dic):
         key = '|'.join(map(re.escape, dic))
         if key in __regex_storage:
