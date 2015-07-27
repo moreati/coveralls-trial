@@ -18,7 +18,7 @@ class TestCoverallsTrial(unittest.TestCase):
         pass
 
     def test_foo(self):
-        self.assertEqual(coveralls_trial.foo(), True)
+        self.assertEqual(coveralls_trial.foo(), u'ƒőő')
 
     def test_bar(self):
         self.assertFalse(coveralls_trial.bar())

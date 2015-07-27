@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 def foo():
-    return True
+    return u'ƒőő'
 
 def bar():
     return False
