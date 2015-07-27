@@ -5,3 +5,11 @@ def foo():
 
 def bar():
     return False
+
+def baz(x)
+    if x:
+        return x**2
+    elif x == 0:
+        return x + 17
+    else:
+        return x
