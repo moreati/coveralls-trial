@@ -23,6 +23,9 @@ class TestCoverallsTrial(unittest.TestCase):
     def test_bar(self):
         self.assertFalse(coveralls_trial.bar())
 
+    def test_baz(self):
+        self.assertEqual(str('Ｍａｃｒｏｓｓ ７'), 'Ｍａｃｒｏｓｓ ７')
+
 
 if __name__ == '__main__':
     unittest.main()
