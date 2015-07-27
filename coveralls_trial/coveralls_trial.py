@@ -6,6 +6,7 @@ def foo():
 def bar():
     return False
 
+x = 2
 def baz():
     if x:
         return x**2
