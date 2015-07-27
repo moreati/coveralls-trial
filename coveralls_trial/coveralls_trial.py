@@ -87,19 +87,19 @@ def convert(text, frm, to, reserved=()):
             for r in reserved:
                 try:
                     del(conv_table[r])
-                except:
+                except KeyError:
                     pass
             text = _multiple_replace(text, conv_table)
         return uflag and text or text.encode('utf-8')
     else:
-        raise "Invalid Parameter"
+        raise ValueError("Invalid Parameter")
 
 def check(text, char_set_type):
     uflag = isinstance(text, text_type)
     text = uflag and text or text.decode('utf-8')
     char_set = []
-    for set in jcconv.char_sets[char_set_type]:
-        char_set.extend(set.split(' '))
+    for cset in jcconv.char_sets[char_set_type]:
+        char_set.extend(cset.split(' '))
     return all([text_char in char_set for text_char in text])
 
 # define character sets used in japanese
@@ -123,12 +123,12 @@ class jcconv:
     halp = [u'a b c d e f g h i j k l m n o p q r s t u v w x y z ' + \
             u'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z']
     wsym = [u'！ ” ＃ ＄ ％ ＆ ’ （ ） ＊ ＋ 、 − ． ／ ： ； ＜ ＝ ＞ ？ ＠ 「 ＼ 」 ＾ ＿ ｀ 『 ｜ 』 〜']
-    hsym = [u'! \" # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~']
+    hsym = [u'! " # $ % & \' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~']
     char_sets = [hira, kata, half, wnum, hnum, walp, halp, wsym, hsym]
 
 
 if __name__ == '__main__':
-    import codecs, sys
+    import codecs
     sys.stdout = codecs.getwriter('utf_8')(sys.stdout)
 
     print(convert(u'あいうえお', jcconv.HIRA, jcconv.HALF, [u'う']))
